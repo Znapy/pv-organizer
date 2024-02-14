@@ -1,0 +1,55 @@
+# incus launch images:debian/12/cloud pv-organizer < incus-instance.yaml
+# incus exec pv-organizer -- cloud-init status --wait
+config:
+  # python 3.12 in Debian packages is not stable yet, so to install from source
+  raw.idmap: |-
+    uid 1000 0
+    gid 1000 0
+  cloud-init.user-data: |
+    #cloud-config
+    packages:
+      - wget
+      # pillow (py-module) dependencies:
+      - libjpeg-dev
+      # opencv (py-module) dependencies:
+      - libatlas-base-dev
+      # python source dependencies:
+      - cmake
+      - libssl-dev
+      - libnss3-dev
+      - libgdbm-dev
+      - libffi-dev
+      - build-essential
+      - libncurses5-dev
+      - libreadline-dev
+      - zlib1g-dev
+      - pkg-config
+    runcmd:
+      - |
+        PYVERSION=3.12.2
+        cd /root
+        wget https://www.python.org/ftp/python/$PYVERSION/Python-$PYVERSION.tgz
+        tar -xzvf Python-$PYVERSION.tgz
+        rm Python-$PYVERSION.tgz
+        cd Python-$PYVERSION/
+        ./configure --enable-optimizations
+        make -j $(nproc)
+        make altinstall
+        cd /root
+        rm -R Python-$PYVERSION
+      - |
+        cd /root
+        wget https://github.com/Znapy/pv-organizer/archive/refs/heads/main.tar.gz
+        tar -xf main.tar.gz
+        rm main.tar.gz
+        cd pv-organizer-main
+        pip3.12 install .
+devices:
+  source:
+    path: /source
+    source: /mnt/sata1
+    type: disk
+  destination:
+    path: /destination
+    source: /mnt/sata2
+    type: disk

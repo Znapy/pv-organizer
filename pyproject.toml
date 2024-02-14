@@ -1,14 +1,12 @@
 [project]
 name = "pv-organizer"
-version = "1.0.0"
+version = "2.0.0"
 authors = [{name = "Alic Znapy", email = "AlicZnapy@gmail.com"},]
 requires-python = ">=3.12"
 dependencies = [
     "pillow>=10.2",
     "opencv-python-headless>=4.9",
 ]
-urls = {homepage = "https://github.com/Znapy/pv-organizer"}
-
 
 [project.optional-dependencies]
 # development dependency groups
@@ -22,7 +20,6 @@ dev = [
     "spyder-kernels>=2.5",
 ]
 
-
 [tool.mypy]
 warn_redundant_casts = true
 warn_return_any = true
@@ -31,9 +28,3 @@ warn_unused_ignores = true
 warn_unreachable = true
 disallow_untyped_defs = true
 python_executable = "/home/alic/env-py/pv-organizer/bin/python"
-
-[project-settings]
-source = "./tests/source"
-destination = "./tests/temp"
-small_size = [128, 128]
-frames = [1, 35, 65, 99] # Percents of frames for picture from video
