@@ -28,7 +28,7 @@ import cv2
 class Settings:
     """Contains launch parameters and default settings."""
 
-    VERSION = "2.0.0"
+    VERSION = "2.0.1"
     DIRECTORY_MODE = 0o750
     SOURCE = "./tests/examples"
     DESTINATION = "./tests/"
@@ -145,8 +145,6 @@ class Settings:
                                "should be >=0 and <=100")
         self.frames_percents = cast(tuple[int, int, int, int], candidate)
 
-        Settings.frames_percents
-
     def __init__(self, launch_args: argparse.Namespace) -> None:
         self.launch_args = launch_args
 
@@ -158,7 +156,7 @@ class Settings:
         self.set_thumbnails()
         self.set_small_size()
         self.set_frames_percents()
-        self.do_not_tar = (launch_args.plain is True)
+        self.do_not_tar = launch_args.plain is True
 
         ImageFile.LOAD_TRUNCATED_IMAGES = True
 

@@ -18,6 +18,7 @@ dev = [
     "python-lsp-server[pycodestyle,pydocstyle,mccabe,pyflakes,rope,yapf,autopep8]>=1.10",
     "pylsp-mypy>=0.6.8",
     "spyder-kernels>=2.5",
+    "pytest>=8.0.1",
 ]
 
 [tool.mypy]

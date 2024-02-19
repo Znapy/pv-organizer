@@ -12,10 +12,13 @@ SPDX-License-Identifier: Apache-2.0
 import argparse
 import logging
 from pathlib import Path
-from pytest import fixture, raises
 from typing import Optional
 
+from pytest import fixture, raises
+
 from pvo import Settings, Copier
+
+# pylint: disable=redefined-outer-name, missing-function-docstring
 
 
 def _arg_params() -> dict[str, Optional[str]]:
@@ -32,7 +35,7 @@ def settings_without_args() -> Settings:
 
 
 class TestSettings:
-    """Test class."""
+    """Test Settings class."""
 
     @staticmethod
     def test_set_log_level() -> None:
@@ -84,41 +87,42 @@ class TestSettings:
 
 
 class TestCopier:
+    """Test Copier class."""
 
     @staticmethod
     def test_frames_numbers_asis() -> None:
         func = Copier.frames_numbers
-        assert func([1, 35, 65, 99], 100) == [1, 35, 65, 99]
+        assert func((1, 35, 65, 99), 100) == [1, 35, 65, 99]
 
     @staticmethod
     def test_frames_numbers_x10() -> None:
         func = Copier.frames_numbers
-        assert func([1, 35, 65, 99], 1000) == [10, 350, 650, 990]
+        assert func((1, 35, 65, 99), 1000) == [10, 350, 650, 990]
 
     @staticmethod
     def test_frames_numbers_max99() -> None:
         func = Copier.frames_numbers
-        assert func([1, 35, 65, 99], 99) == [1, 35, 65, 99]
+        assert func((1, 35, 65, 99), 99) == [1, 35, 65, 99]
 
     @staticmethod
     def test_frames_numbers_max4() -> None:
         func = Copier.frames_numbers
-        assert func([1, 35, 65, 99], 4) == [1, 2, 3, 4]
+        assert func((1, 35, 65, 99), 4) == [1, 2, 3, 4]
 
     @staticmethod
     def test_frames_numbers_max2() -> None:
         func = Copier.frames_numbers
-        assert func([1, 35, 65, 99], 2) == [1, 1, 2, 2]
+        assert func((1, 35, 65, 99), 2) == [1, 1, 2, 2]
 
     @staticmethod
     def test_frames_numbers_max1() -> None:
         func = Copier.frames_numbers
-        assert func([1, 35, 65, 99], 1) == [1, 1, 1, 1]
+        assert func((1, 35, 65, 99), 1) == [1, 1, 1, 1]
 
     @staticmethod
     def test_frames_numbers_0_100() -> None:
         func = Copier.frames_numbers
-        assert func([0, 100, 0, 100], 99) == [0, 99, 0, 99]
+        assert func((0, 100, 0, 100), 99) == [0, 99, 0, 99]
 
     def test_examples(self, settings_without_args: Settings) -> None:
         copier = Copier(settings_without_args)

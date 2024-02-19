@@ -11,7 +11,7 @@ OLD_MYPYPATH="$MYPYPATH"
 export MYPYPATH="$PYTHONPATH"
 
 echo "PYTHONPATH is: $PYTHONPATH"
-bash -c "source ~/env-py/pv-organizer/bin/activate && pylsp --tcp" &
+bash -c "source $PYTHONPATH/.venv/bin/activate && pylsp --tcp" &
 bash -c "source ~/env-py/spyder/bin/activate && spyder --new-instance --conf-dir '$PYTHONPATH/.spyproject/spyder-py3'"
 
 export PYTHONPATH="$OLD_PYTHONPATH"
