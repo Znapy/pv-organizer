@@ -28,7 +28,7 @@ import cv2
 class Settings:
     """Contains launch parameters and default settings."""
 
-    VERSION = "2.0.1"
+    VERSION = "2.0.2"
     DIRECTORY_MODE = 0o750
     SOURCE = "./tests/examples"
     DESTINATION = "./tests/"

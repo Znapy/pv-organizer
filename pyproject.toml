@@ -28,4 +28,4 @@ warn_unused_configs = true
 warn_unused_ignores = true
 warn_unreachable = true
 disallow_untyped_defs = true
-python_executable = "/home/alic/env-py/pv-organizer/bin/python"
+python_executable = "/home/alic/Projects/pv-organizer/.venv/bin/python"
