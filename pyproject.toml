@@ -17,7 +17,7 @@ dev = [
     "pylint>=3.0",
     "python-lsp-server[pycodestyle,pydocstyle,mccabe,pyflakes,rope,yapf,autopep8]>=1.10",
     "pylsp-mypy>=0.6.8",
-    "spyder-kernels>=2.5",
+    "spyder-kernels>=2.4",
     "pytest>=8.0.1",
 ]
 
@@ -29,3 +29,6 @@ warn_unused_ignores = true
 warn_unreachable = true
 disallow_untyped_defs = true
 python_executable = "/home/alic/Projects/pv-organizer/.venv/bin/python"
+
+[tool.pylint]
+init-hook='from pylint.config import find_default_config_files; import os, sys; sys.path.append(os.path.dirname(next(find_default_config_files())))'
